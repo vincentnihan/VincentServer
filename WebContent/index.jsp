@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>JSP CRUD Example</title>
 </head>
 <body>
-
+<h1>JSP CRUD Example</h1>  
+<a href="db/newUser.jsp">Add User</a>  
+<a href="db/viewUsers.jsp">View Users</a>  
 </body>
 </html>

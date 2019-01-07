@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>JSP CRUD Example</title>
+<title>Add User Success</title>
 </head>
 <body>
-<h1>JSP CRUD Example</h1>  
-<a href="db/newUser.jsp">Add User</a>  
-<a href="db/viewUser.jsp">View Users</a>  
+<p>Record successfully saved!</p>  
+<jsp:include page="userform.jsp"></jsp:include>  
 </body>
 </html>
