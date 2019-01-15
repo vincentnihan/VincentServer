@@ -2,7 +2,7 @@ package com.vincentserver.bean;
 
 public class User {
 	private int id;
-	private String name, password, data;
+	private String name, password;
 	
 	public int getId() {
 		return id;
@@ -21,12 +21,6 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public String getData() {
-		return data;
-	}
-	public void setData(String value) {
-		this.data = value;
 	}
 	
 }

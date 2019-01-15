@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>JSP CRUD Example</title>
+<title>VincentServerMain</title>
 </head>
 <body>
-<h1>JSP CRUD Example</h1>  
-<a href="db/newUser.jsp">Add User</a>  
-<a href="db/viewUsers.jsp">View Users</a>  
+<h1>Main Page</h1>  
+<%@ page import = "java.io.*,java.util.*" %>
+<a href="login.jsp">Login</a>|  
+<a href="LogoutServlet">Logout</a>|
+<a href="DatabaseServlet">Database</a>
 </body>
 </html>

@@ -11,8 +11,8 @@ public class UserDaoImp {
 	public static Connection getConnection(){  
 	    Connection con=null;  
 	    try{  
-	        Class.forName("com.mysql.jdbc.Driver");  
-	        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test","","");  
+	        Class.forName("com.mysql.cj.jdbc.Driver");  
+	        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/world","root","12345");  
 	    }catch(Exception e){System.out.println(e);}  
 	    return con;  
 	}  
@@ -20,12 +20,11 @@ public class UserDaoImp {
 		int status=0;
 		try {
 			Connection con = getConnection();
-			String statement = "insert into db(id,name,password,data) values(?,?,?,?)";
+			String statement = "insert into userInfo(userID,userName,pass) values(?,?,?)";
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setInt(1, t.getId());
 			ps.setString(2, t.getName());
 			ps.setString(3, t.getPassword());
-			ps.setString(4, t.getData());
 			status = ps.executeUpdate();
 		}catch(Exception e) {System.out.println(e);}
 		return status;
@@ -35,11 +34,10 @@ public class UserDaoImp {
 		int status=0;
 		try {
 			Connection con = getConnection();
-			String statement = "update db set name = ?, password = ?, data = ? where id = ?";
+			String statement = "update userInfo set userName = ?, pass = ?, where userID = ?";
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setString(1, t.getName());
 			ps.setString(2, t.getPassword());
-			ps.setString(3, t.getData());
 			ps.setInt(4, t.getId());
 			status = ps.executeUpdate();
 		}catch(Exception e) {System.out.println(e);}
@@ -50,7 +48,7 @@ public class UserDaoImp {
 		int status=0;
 		try {
 			Connection con = getConnection();
-			String statement = "delete from db where id = ?";
+			String statement = "delete from userInfo where userID = ?";
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setInt(1, t.getId());
 			status = ps.executeUpdate();
@@ -63,34 +61,53 @@ public class UserDaoImp {
 		User u = null;
 		try {
 			Connection con = getConnection();
-			String statement = "select * from db where id = ?";
+			String statement = "select * from userInfo where userID = ?";
 			PreparedStatement ps = con.prepareStatement(statement);
 			ps.setInt(1, id);
 			result = ps.executeQuery();
-			u = new User();
-			u.setId(id);
-			u.setName(result.getString("name"));
-			u.setPassword(result.getString("password"));
-			u.setData(result.getString("data"));
+			if(result.next())
+			{
+				u = new User();
+				u.setId(id);
+				u.setName(result.getString("userName"));
+				u.setPassword(result.getString("pass"));
+			}
 		}catch(Exception e) {System.out.println(e);}
 		return u;
 	}
 
+	public static int findByNameAndPassword(String name, String password) {
+		ResultSet result = null;
+		int resultID = 0;
+		try {
+			Connection con = getConnection();
+			String statement = "select * from userInfo where userName = ? and pass = ?";
+			PreparedStatement ps = con.prepareStatement(statement);
+			ps.setString(1, name);
+			ps.setString(2, password);
+			result = ps.executeQuery();
+			if(result.next())
+			{
+				resultID = result.getInt("userID");
+			}
+		}catch(Exception e) {System.out.println(e);}
+		return resultID;
+	}
+	
 	public static List<User> findAllRecord() {
 		ResultSet result = null;
 		List<User> list = new ArrayList<User>();
 		try {
 			Connection con = getConnection();
-			String statement = "select * from db";
+			String statement = "select * from userInfo";
 			PreparedStatement ps = con.prepareStatement(statement);
 			result = ps.executeQuery();
 			while(result.next())
 			{
 				User u = new User();
-				u.setId(result.getInt("id"));
-				u.setName(result.getString("name"));
-				u.setPassword(result.getString("password"));
-				u.setData(result.getString("data"));
+				u.setId(result.getInt("userID"));
+				u.setName(result.getString("userName"));
+				u.setPassword(result.getString("pass"));
 				list.add(u);
 			}
 		}catch(Exception e) {System.out.println(e);}

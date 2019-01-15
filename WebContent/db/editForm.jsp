@@ -20,8 +20,6 @@
 <input type="text" name="name" value="<%= u.getName()%>"/></td></tr>  
 <tr><td>Password:</td><td>  
 <input type="password" name="password" value="<%= u.getPassword()%>"/></td></tr>  
-<tr><td>Data:</td><td>  
-<input type="text" name="data" value="<%= u.getData()%>"/></td></tr>  
 <tr><td colspan="2"><input type="submit" value="Edit User"/></td></tr>  
 </table>  
 </form> 
