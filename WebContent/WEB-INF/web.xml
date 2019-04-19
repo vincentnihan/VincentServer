@@ -22,4 +22,10 @@
     <servlet-name>LogoutServlet</servlet-name>  
     <servlet-class>com.vincentserver.servlet.LogoutServlet</servlet-class>  
   </servlet> 
+   <servlet>  
+    <description></description>  
+    <display-name>UserEditServlet</display-name>  
+    <servlet-name>UserEditServlet</servlet-name>  
+    <servlet-class>com.vincentserver.servlet.UserEditServlet</servlet-class>  
+  </servlet> 
 </web-app>

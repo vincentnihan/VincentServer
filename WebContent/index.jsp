@@ -8,9 +8,26 @@
 </head>
 <body>
 <h1>Main Page</h1>  
-<%@ page import = "java.io.*,java.util.*" %>
-<a href="login.jsp">Login</a>|  
-<a href="LogoutServlet">Logout</a>|
-<a href="DatabaseServlet">Database</a>
+<%@ page import = "java.io.*,java.util.*" %> 
+<%
+	Cookie loginSession[]=request.getCookies();  
+	if(loginSession==null)
+	{  
+		%>
+		<a href="login.jsp">Login</a>|  
+		<%
+	}
+	else
+	{
+ 		String name=loginSession[0].getValue();  
+		if(!name.equals("")||name!=null)
+		{
+			%>
+			<a href="LogoutServlet">Logout</a>|
+			<a href="DatabaseServlet">Database</a>
+			<%
+		}
+	}
+%>
 </body>
 </html>

@@ -12,7 +12,7 @@
 	String id=request.getParameter("id");  
 	User u= UserDaoImp.findByID(Integer.parseInt(id));  
 %>  
-<form action="edituser.jsp" method="post">  
+<form action="UserEditServlet" method="post">  
 <input type="hidden" name="id" value="<%=u.getId() %>"/>  
 <table>  
 <tr><td>ID: <%= u.getId() %> </td></tr>

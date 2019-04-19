@@ -7,11 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@page import="com.vincentserver.main.UserDaoImp"%>  
-<jsp:useBean id="u" class="com.vincentserver.bean.User"></jsp:useBean>  
-<jsp:setProperty property="*" name="u"/> 
-<%  UserDaoImp.delete(u); 
-	response.sendRedirect("viewusers.jsp");  
+<%@page import="com.vincentserver.main.UserDaoImp,com.vincentserver.bean.User"%>   
+<%  
+	String id=request.getParameter("id");  
+	User u= UserDaoImp.findByID(Integer.parseInt(id));  
+	UserDaoImp.delete(u); 
+	response.sendRedirect("db/viewusers.jsp");  
 %>
 
 </body>

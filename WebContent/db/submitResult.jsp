@@ -3,10 +3,10 @@
 <jsp:setProperty property="*" name="u"/>  
   
 <%
-    	int i= UserDaoImp.save(u); 
+    int i= UserDaoImp.save(u); 
     if(i>0){  
     response.sendRedirect("addSuccess.jsp");  
     }else{  
     response.sendRedirect("addFail.jsp");  
     }
-    %>  
+%>  

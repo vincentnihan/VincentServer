@@ -19,7 +19,6 @@ public class DatabaseServlet extends HttpServlet{
 	{  
 		response.setContentType("text/html");  
         PrintWriter out=response.getWriter();  
-        request.getRequestDispatcher("link.jsp").include(request, response);
         
         Cookie loginSession[]=request.getCookies();  
         if(loginSession!=null){  
@@ -27,12 +26,12 @@ public class DatabaseServlet extends HttpServlet{
         if(!name.equals("")||name!=null){  
             out.print("<b>Welcome to Database</b>");  
             out.print("<br>Welcome, "+name);  
-            
+            request.getRequestDispatcher("db/viewUsers.jsp").include(request, response);
             //Feature Update start here!
         }  
         }else{  
             out.print("Please login first");  
-            request.getRequestDispatcher("login.html").include(request, response);  
+            request.getRequestDispatcher("login.jsp").include(request, response);  
         }  
         out.close();  
         

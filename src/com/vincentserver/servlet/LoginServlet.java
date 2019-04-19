@@ -23,13 +23,12 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		if(UserDaoImp.findByNameAndPassword(name,password) != 0)
 		{
-			 out.print("You are successfully logged in!");  
-	         out.print("<br>Welcome, "+name);  
-		
-		
-		Cookie loginSession =new Cookie("name",name);  
-		loginSession.setMaxAge(5000);
-        response.addCookie(loginSession);  
+			out.print("You are successfully logged in!");  
+			out.print("<br>Welcome, "+name);  				
+			Cookie loginSession =new Cookie("name",name);  
+			loginSession.setMaxAge(5000);
+	        response.addCookie(loginSession);  
+	        request.getRequestDispatcher("DatabaseServlet").include(request, response);  
 		}
 		else
 		{
